@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestProj3</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <nav>
+    <% if user_signed_in? %>
+      Hello <%= current_user.full_name %>
+      <%= link_to "Sign Out", session_path, method: :delete,
+      data: {confirm: "Are you sure you want to sign out?"} %>
+      <% else %>
+        <%= link_to "Sign In", new_session_path %>
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+      <hr>
+      <%# <a href="/">Home</a> %>
+      <%= link_to 'Home', root_path %>
+      |
+      <%= link_to 'Prepare', prepare_path %>
+    </nav>
+    <p>
+    <%#= flash[:notice] || flash[:alert]%>
+    <% flash.each do |type, message| %>
+      <div class="flash flash-<%= type %>">
+        <%= message %>
+      </div>
+    <% end %>
+    </p>
+    <%= yield %>
+  </body>
+</html>
