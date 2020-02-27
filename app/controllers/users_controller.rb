@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+    before_action :user_params, only: [:index]
+
     def new
         @user = User.new
     end
@@ -12,6 +14,10 @@ class UsersController < ApplicationController
         else
             render :new
         end             
+    end
+
+    def index
+        @users = User.all
     end
 
     private

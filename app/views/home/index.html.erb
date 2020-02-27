@@ -5,4 +5,13 @@
     <div class="grid-item card mt-4">
     <%= image_tag 'photo-1490225421893-2908ffad8593.jpeg', alt: 'art-image', class: 'whatever' %>
     </div>
+    <h1>Class Schedule</h1>
+    <% @class_schedules.each do |c| %>
+        <div>
+            <h2><%= c.title %></h2>
+            <p><%= c.day_of_week %></p>
+            <p><%= c.start_time %></p>
+            <p><%= c.end_time %></p>
+        </div>
+    <% end%>
 </div>

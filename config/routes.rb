@@ -6,8 +6,18 @@ Rails.application.routes.draw do
 
   get "prepare" => "home#prepare"
 
-  resources :users, only: [:new, :create]
+  get "contact_us" => "home#contact_us"
+
+  resources :class_schedules, only: [:new, :create, :destroy]
+
+  resources :users, only: [:new, :create, :index]
 
   resource :session, only: [:new, :create, :destroy]
+
+  resources :workouts
+
+  resources :social_events
+
+  resources :user_workouts
 
 end

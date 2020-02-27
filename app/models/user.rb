@@ -1,10 +1,17 @@
 class User < ApplicationRecord
+    #Association
+    has_many :workouts, dependent: :destroy
+    has_many :social_events, dependent: :nullify
+    has_many :trainers, dependent: :nullify
+    has_many :user_workouts, dependent: :destroy
+    has_many :booked_workouts, through: :user_workouts
 
     before_save :capitalize_name
     before_validation :set_default_role
     before_validation :set_default_meals
     before_validation :set_default_food_account
 
+    #Validations
     validates :email, presence: true, uniqueness: true,
     format: /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
