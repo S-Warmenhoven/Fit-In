@@ -1,0 +1,6 @@
+<% @workouts.each do |workout| %>
+<div>
+    <h2><%=link_to( workout.user_id, workout_path(workout.id)) %></h2>
+    <p><%= workout.start_time %> to <%= workout.end_time %></p>
+</div>
+<% end%>

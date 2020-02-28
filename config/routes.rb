@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  
   resources :social_events
   resources :trainers
+  resources :class_schedules
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "home#index"
 
@@ -8,16 +11,17 @@ Rails.application.routes.draw do
 
   get "contact_us" => "home#contact_us"
 
-  resources :class_schedules, only: [:new, :create, :destroy]
-
-  resources :users, only: [:new, :create, :index]
-
+  resources :users
   resource :session, only: [:new, :create, :destroy]
 
-  resources :workouts
-
-  resources :social_events
+  resources :workouts do
+    resources :user_workouts, shallow: true do
+      put :approving
+      put :rejecting
+    end
+  end
 
   resources :user_workouts
+
 
 end

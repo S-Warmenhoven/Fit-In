@@ -11,6 +11,11 @@
 
   <tbody>
     <% @trainers.each do |trainer| %>
+      <% if trainer.image_url != "" %>
+        <%= image_tag trainer.image_url, alt: 'trainer-image', class: 'trainer' %>
+      <% end %>
+      <h2><%= trainer.name %></h2>
+      <p><%= trainer.description %></p>
       <tr>
         <td><%= link_to 'Show', trainer %></td>
         <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>

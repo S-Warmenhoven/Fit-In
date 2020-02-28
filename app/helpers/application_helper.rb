@@ -1,11 +1,11 @@
 module ApplicationHelper
 
     def readable_time(time)
-        time.strftime("%b %d, %I:%M%P")
+        time.strftime("%I:%M%P")
     end
 
-    def user_friendly_range date
-        return date.strftime("%B %d %Y")
+    def user_friendly_range datetime
+        return datetime.strftime("%B %d %Y %I:%M%P")
     end
 
     def use_day_only date

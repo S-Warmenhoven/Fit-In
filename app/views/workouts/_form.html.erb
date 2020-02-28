@@ -1,0 +1,36 @@
+<div class="p-10 bg-white border border-grey-light rounded">
+<%= form_with(model: @workout, local: true, class: "workout-form") do |form| %>
+  <% if @workout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
+
+      <ul>
+      <% @workout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3 class="mb-4">Workout Information</h3>
+
+  <div class="mb-6">
+    <%= form.label :start_time, class: "label" %>
+    <div class="flex items-center justify-between max-w-md">
+      <%= form.datetime_select :start_time, { start_day: Date.today, start_year: Date.today.year, minute_step: 15 }, { class: "select py-2 px-2 mr-2" } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time, class: "label" %>
+    <div class="flex items-center justify-between max-w-md">
+      <%= form.datetime_select :end_time, { start_day: Date.today, start_year: Date.today.year, minute_step: 15 }, { class: "select py-2 px-2 mr-2" } %>
+    </div>
+  </div>
+
+  <hr class="border" />
+
+  <%= form.submit class: "btn btn-primary text-base py-3 px-5" %>
+
+<% end %>
+</div>

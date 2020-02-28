@@ -10,8 +10,7 @@
         <div>
             <h2><%= c.title %></h2>
             <p><%= c.day_of_week %></p>
-            <p><%= c.start_time %></p>
-            <p><%= c.end_time %></p>
+            <p><%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
         </div>
     <% end%>
 </div>

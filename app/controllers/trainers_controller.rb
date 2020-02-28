@@ -25,7 +25,7 @@ class TrainersController < ApplicationController
   # POST /trainers.json
   def create
     @trainer = Trainer.new(trainer_params)
-
+    @trainer.user = current_user
     respond_to do |format|
       if @trainer.save
         format.html { redirect_to @trainer, notice: 'Trainer was successfully created.' }
@@ -69,6 +69,6 @@ class TrainersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def trainer_params
-      params.fetch(:trainer, {})
+      params.require(:trainer).permit(:image_url, :name, :description)
     end
 end

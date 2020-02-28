@@ -37,8 +37,26 @@ class WorkoutsController < ApplicationController
 
 
     def show
-        @user_workout = UserWorkout.new
-        @user_workouts = @workout.user_workouts.all
+        # @user_workout = UserWorkout.new
+        # @user_workouts = @workout.user_workouts.all
+        # @user_workout = @workout.find_by(user: current_user)
+        # #if I'm a trainer (workout owner)
+        # if @course.user == current_user 
+        #     if can? :crud, @course
+        #         @bookings = @course.bookings.order(created_at: :desc)
+        #         @enrollments = @course.enrollments.order(created_at: :desc)
+        #     else
+        #         @bookings = @course.bookings.where(hidden: false).order(created_at: :desc)
+        #         @enrollments = @course.enrollments.where(hidden: false).order(created_at: :desc)
+        #     end
+        # else #else its a student-user or room-mananger-user
+        #     @bookings = @course.bookings.order(created_at: :desc)
+        #     if current_user && current_user.enrollments  
+        #         @enrollments = current_user.enrollments.map{
+        #             |enrollment| Course.find(enrollment.course_id) 
+        #         }
+        #     end
+        # end
     end
 
     def destroy
@@ -48,13 +66,16 @@ class WorkoutsController < ApplicationController
     end
 
     def booked 
-        @workouts = current_user.booked_workouts
+        @workouts = current_user.booked_workouts.order('user_workouts.created_at DESC')
     end
 
     private
 
     def find_workout
         @workout=Workout.find params[:id]
+        if @workout === nil
+            redirect_to root_path, notice: "Workout Does Not Exist"
+        end
     end
 
     def workout_params

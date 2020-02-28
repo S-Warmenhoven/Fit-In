@@ -1,0 +1,42 @@
+<div class="container">
+
+    <h1><%= @user.full_name %></h1>
+    <button class="sign_up_button">
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+    </button>
+
+    <div class="user-container">
+        <% if current_user.workouts.length > 0 %>
+            <div>
+                <h2>Your Workouts</h2>
+                <%= render 'shared/workouts_index',workouts: current_user.workouts %>
+            </div>
+        <% else %>
+            <div class="link_container">
+                <h3>Add a workout ☞</h3>
+                <div>
+                <%= link_to new_workout_path do %>
+                    <%= image_tag "https://i.ibb.co/GtWqbN8/room1.jpg", class: "img-links" %>
+                <% end %>
+                </div>
+        <% end %>
+    </div>
+
+    <% if current_user.user_workouts.length > 0 %>
+        <div>
+            <h2>Your booked workouts:</h2>
+            <%= render 'shared/user_workouts_index',user_workouts: current_user.user_workouts %>
+        </div>
+    <% else %>
+        <div class="link_container">
+            <h3> Add a user_workout ☞ </h3>
+            <div>
+            <%= link_to new_user_workout_path do %>
+                <%= image_tag "https://i.ibb.co/qpR25vS/yoga.jpg", class: "img-links" %>
+            <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    </div>
+</div>

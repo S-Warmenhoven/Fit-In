@@ -1,10 +1,13 @@
 class User < ApplicationRecord
     #Association
-    has_many :workouts, dependent: :destroy
-    has_many :social_events, dependent: :nullify
-    has_many :trainers, dependent: :nullify
     has_many :user_workouts, dependent: :destroy
-    has_many :booked_workouts, through: :user_workouts
+
+    has_many :workouts, through: :user_workouts, dependent: :destroy
+
+    has_many :social_events, dependent: :nullify
+    has_many :class_schedules, dependent: :nullify
+    has_many :trainers, dependent: :nullify
+    #has_many :booked_workouts, through: :user_workouts, source: :workout
 
     before_save :capitalize_name
     before_validation :set_default_role
