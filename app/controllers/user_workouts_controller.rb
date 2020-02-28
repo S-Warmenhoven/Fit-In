@@ -2,7 +2,7 @@ class UserWorkoutsController < ApplicationController
     
     before_action :authenticate_user!
     before_action :find_workout, only: [:create]
-    before_action :find_user_workout, only: [:show]
+    # before_action :find_user_workout, only: [:show]
 
     def index
         @user_workouts = current_user.user_workouts.where(user_id: current_user) #if current_user 
@@ -16,8 +16,10 @@ class UserWorkoutsController < ApplicationController
     end
 
     def create
-        @user_workout = UserWorkout.new(user: current_user, workout: @workout)
-        @user_workout.workout = @workout
+        # @user_workout = UserWorkout.new(user: current_user, workout: @workout)
+        # @user_workout.workout = @workout
+        @user = current_user
+        @user_workout = @user.user_workouts << @workout
         if @user_workout.save 
             flash[:success] = "Your workout session is booked"
             redirect_to @user_workout

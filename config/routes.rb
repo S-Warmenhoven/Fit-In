@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :workouts do
-    resources :user_workouts, shallow: true do
-      put :approving
-      put :rejecting
-    end
+    resources :user_workouts #do
+      # put :approving
+      # put :rejecting
+    #end
   end
 
   resources :user_workouts
