@@ -23,5 +23,7 @@ Rails.application.routes.draw do
 
   resources :user_workouts
 
+  resources :food_items
+
 
 end

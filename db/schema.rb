@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_065148) do
+ActiveRecord::Schema.define(version: 2020_02_28_122542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 2020_02_28_065148) do
     t.index ["user_id"], name: "index_trainers_on_user_id"
   end
 
+  create_table "user_meals", force: :cascade do |t|
+    t.bigint "food_item_id", null: false
+    t.bigint "user_id", null: false
+    t.decimal "price"
+    t.integer "meal_number"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_item_id"], name: "index_user_meals_on_food_item_id"
+    t.index ["user_id"], name: "index_user_meals_on_user_id"
+  end
+
   create_table "user_workouts", force: :cascade do |t|
     t.bigint "workout_id", null: false
     t.bigint "user_id", null: false
@@ -106,6 +118,8 @@ ActiveRecord::Schema.define(version: 2020_02_28_065148) do
   add_foreign_key "food_items", "sections"
   add_foreign_key "social_events", "users"
   add_foreign_key "trainers", "users"
+  add_foreign_key "user_meals", "food_items"
+  add_foreign_key "user_meals", "users"
   add_foreign_key "user_workouts", "users"
   add_foreign_key "user_workouts", "workouts"
   add_foreign_key "workouts", "users"
