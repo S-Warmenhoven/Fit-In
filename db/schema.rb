@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_215055) do
+ActiveRecord::Schema.define(version: 2020_02_28_065148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 2020_02_27_215055) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_class_schedules_on_user_id"
+  end
+
+  create_table "food_items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.decimal "price"
+    t.integer "meal_number"
+    t.string "image_url"
+    t.bigint "section_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["section_id"], name: "index_food_items_on_section_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_sections_on_name"
   end
 
   create_table "social_events", force: :cascade do |t|
@@ -84,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_02_27_215055) do
   end
 
   add_foreign_key "class_schedules", "users"
+  add_foreign_key "food_items", "sections"
   add_foreign_key "social_events", "users"
   add_foreign_key "trainers", "users"
   add_foreign_key "user_workouts", "users"

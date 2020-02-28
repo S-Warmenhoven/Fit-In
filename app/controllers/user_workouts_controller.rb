@@ -5,7 +5,7 @@ class UserWorkoutsController < ApplicationController
     before_action :find_user_workout, only: [:show]
 
     def index
-        @user_workouts = current_user.user_workouts.all if current_user   
+        @user_workouts = current_user.user_workouts.where(user_id: current_user) #if current_user 
     end
 
     def show
@@ -19,7 +19,7 @@ class UserWorkoutsController < ApplicationController
         @user_workout = UserWorkout.new(user: current_user, workout: @workout)
         @user_workout.workout = @workout
         if @user_workout.save 
-            flash[:success] = "Your was workout created"
+            flash[:success] = "Your workout session is booked"
             redirect_to @user_workout
         else 
             flash[:danger] = user_workout.errors.full_messages.join(", ")

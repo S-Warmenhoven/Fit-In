@@ -1,5 +1,5 @@
 <h1>Workout</h1>
-<p><%= user_friendly_range(@workout.start_time) %> to <%= user_friendly_range(@workout.start_time) %></p>
+<p><%= user_friendly_range(@workout.start_time) %> to <%= user_friendly_range(@workout.end_time) %></p>
 
 <%= link_to("Delete", workout_path(@workout), method: :delete, data:{confirm:'Are you sure?' }) %>
 <br />

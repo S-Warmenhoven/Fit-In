@@ -10,7 +10,22 @@
       </ul>
     </div>
   <% end %>
-
+  <div>
+    <%= form.label "Picture" %>
+    <%= form.text_field :image_url %>
+  </div>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :when %>
+    <%= form.text_area :when %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

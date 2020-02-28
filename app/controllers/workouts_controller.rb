@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
     #must find workout before auth because otherwise workout user will be nil
     
     def index 
-        @workouts = current_user.workouts.where(user_id: current_user)
+        @workouts = Workout.where(user_id: current_user)
     end
 
     def new
@@ -37,6 +37,8 @@ class WorkoutsController < ApplicationController
 
 
     def show
+        @user_workout = UserWorkout.new
+        
         # @user_workout = UserWorkout.new
         # @user_workouts = @workout.user_workouts.all
         # @user_workout = @workout.find_by(user: current_user)

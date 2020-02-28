@@ -25,7 +25,7 @@ class SocialEventsController < ApplicationController
   # POST /social_events.json
   def create
     @social_event = SocialEvent.new(social_event_params)
-
+    @social_event.user = current_user
     respond_to do |format|
       if @social_event.save
         format.html { redirect_to @social_event, notice: 'Social event was successfully created.' }
@@ -69,6 +69,6 @@ class SocialEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def social_event_params
-      params.fetch(:social_event, {})
+      params.require(:social_event).permit(:title, :description, :image_url, :when, :user_id)
     end
 end
