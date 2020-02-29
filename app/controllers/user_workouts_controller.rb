@@ -19,7 +19,7 @@ class UserWorkoutsController < ApplicationController
         # @user_workout = UserWorkout.new(user: current_user, workout: @workout)
         # @user_workout.workout = @workout
         @user = current_user
-        @user_workout = @user.user_workouts << @workout
+        @user_workout = @user.workouts << @workout
         if @user_workout.save 
             flash[:success] = "Your workout session is booked"
             redirect_to @user_workout

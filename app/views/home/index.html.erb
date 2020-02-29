@@ -3,14 +3,150 @@
     <h1>Welcome to Train-In<h1>
     </div>
     <div class="grid-item card mt-4">
-    <%= image_tag 'photo-1490225421893-2908ffad8593.jpeg', alt: 'art-image', class: 'whatever' %>
+    <%= image_tag 'photo-1490225421893-2908ffad8593.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+    </div>
+    <div class="grid-item card mt-4">
+    <%= image_tag 'Classes-Schedule.jpg', alt: 'class-schedule', class: 'class-schedule' %>
     </div>
     <h1>Class Schedule</h1>
-    <% @class_schedules.each do |c| %>
+        <h2>Monday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Monday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Tuesday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Tuesday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Wednesday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Wednesday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Thursday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Thursday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Friday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Friday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Saturday</h2>
+        <% @class_schedules.each do |c| %>
+            <% if c.day_of_week == "Saturday" %>
+            <div>
+                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+            </div>
+            <% end %>
+        <% end%>
+        <h2>Sunday - closed</h2>
+
         <div>
-            <h2><%= c.title %></h2>
-            <p><%= c.day_of_week %></p>
-            <p><%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+        <h1>Classes</h1>
+        <%= image_tag 'other/photo-1549576490-b0b4831ef60a.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Yoga</h2>
+        <p>
+            Our yoga teacher is a qualified trainer with hundreds of hours of yoga experience. She teaches “Yin” yoga.  
+            Yin Yoga is based on the Taoist concept of yin and yang, opposite and complementary principles in nature. 
+            Yin is the stable, unmoving, hidden aspect of things; yang is the changing, moving, revealing aspect. 
+            Other yin-yang polarities include cold-hot, down-up, calm-excited.
+            In the body, the relatively stiff connective tissues (tendons, ligaments, fascia) are yin, 
+            while the more mobile and pliable muscles and blood are yang.
+            A Yin yoga class usually consists of a series of long-held, passive floor poses that mainly work the lower part of the body—the hips, pelvis, inner thighs, lower spine. These areas are especially rich in connective tissues. The poses are held for up to five minutes, sometimes longer.
+        </p>
+        <%= image_tag 'other/photo-1509255929945-586a420363cf.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Muay Thai</h2>
+        <p>
+            Muay Thai kick boxing makes use of punches, kicks, elbows and knee strikes, thus using eight “points of contact”, as opposed to “two points” (fists) in boxing and “four points” (hands and feet) used in other more regulated combat sports. This class will not only help you learn a new skill, 
+            but also burn calories and improve health and fitness, with professional instruction from experts, this is a fun and fast way to get fit!
+            Although we have professional fighters training at our Muay-Thai classes they are still perfect for complete beginners.
+        </p>
+        <%= image_tag 'other/photo-1521804906057-1df8fdb718b7.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Weight Training</h2>
+        <p>
+            In this class we dedicate the 45min training directly to proper lifting technique. 
+            We do not try to go crazy weights or go for explosive workout, instead we learn and teach our bodies how to lift weights safely and correctly. This will help you get better results in long term as you will avoid a lot of injuries and will know how to get the most out of each exercise.
+            Not only that, but all your numbers in the exercises covered will go up! 
+            When you can use good technique together with your strength you will see amazing results.
+            The class is available for beginners as well as advanced trainees.
+        </p>
+        <%= image_tag 'other/photo-1530021356476-0a6375ffe73b.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>TRX</h2>
+        <p>
+            TRX Training first became so intriguing because it offered coaches and fitness enthusiasts the opportunity to train movement in such unique ways. 
+            It wasn’t the standard weight room exercises. These are drills that actually address the way people move and perform.
+            Kettlebell training teaches two primary foundational skills; the power of moving from the hips to spare the lower back and the ability to lift overhead are two of the more simple yet powerful concepts in Kettlebell training.
+            We can use specific exercises to teach important principles in regards to proper lifting technique and integrating the body more efficiently, to create a workout that increases efficiency, reduces the risk of injury and improves our overall wellbeing.
+        </p>
+        <%= image_tag 'other/photo-1578762560042-46ad127c95ea.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Metcon</h2>
+        <p>
+            Metabolic conditioning simply refers to structured patterns of work and rest periods to elicit a desired response from the body. 
+            This desired response is usually to maximize efficiency. This class is most guests favorite but be warned, you will be pushed to your limits! 
+            Instead of focusing on pushing/pulling as much weight as possible we instead focus on using the best form and minimizing the rest period to exhaust your body and improve endurance. 
+            All the exercises in this workout will include practical strength which correlates to real life situations and our professional trainer will ensure that all exercises are performed correctly to protect you from any possible injuries and maximize your efficiency.
+        </p>
+        <%= image_tag 'other/photo-1556895368-9d1eed826c58.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Kettlebells</h2>
+        <p>
+            Kettlebells make your workouts exponentially better. We could also say they make your workouts easier, but that’s not really the case. An all-in-one fitness tool that offers, arguably, the most variety of any other equipment, kettlebells are perfect for every athlete, regardless of skill level.
+        </p>
+        <%= image_tag 'other/photo-1534258936925-c58bed479fcb.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>HITT</h2>
+        <p>
+            HIIT is a 45-minute high-intensity interval training (HIIT) workout. The class is designed to strip bodyfat, improve strength and build lean muscle.
+            This workout uses barbell, kettlebell, trx and body weight exercises to blast all major muscle groups.
+            HIIT takes cutting edge training and combines it with good music and coaches who will be with you every step of the way, motivating you to work harder.
+            HIIT is suitable for beginners to advanced. Our coaches will advise you on what weight to use in each of the exercises to insure you are working within your own limits. 
+            Every exercise used during the class will be explained in detail by our qualified coaches.
+        </p>
+        <%= image_tag 'other/photo-1574005280900-3ff489fa1f70.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Boxing</h2>
+        <p>
+            We base our Boxing class on the training concepts used by boxers to keep fit. 
+            Class plans can vary but a typical one may involve skipping, hitting pads, hitting punch bags and an intense abs workout to finish off.
+            Boxing is suitable for beginners to advanced.
+            There is no physical hitting of an opponent, it’s just a fun, stress relieving, calorie burning workout.
+        </p>
+        <%= image_tag 'other/photo-1521123455729-f785146ad5a5.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Beach Training</h2>
+        <p>
+            Every Saturday the whole gym finishes off the week down the street at the beautiful Ban Tai beach for a beach training session.
+            This really is a great opportunity to have some fun with the other guests and enjoy the benefits of being on a beautiful tropical island.
+            We all train hard then finish off with a swim in the crystal clear waters.
+        </p>
+        <%= image_tag 'other/photo-1579119986241-5e72d26cb690.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>ABS</h2>
+        <p>
+            Our Abs Classes are a great way to tone up the troublesome abdominal region! The class consist of specific moves, sequences and routines put together to give you a great abdominal workout because, let’s be honest, who doesn’t want a 6 pack or a flat stomach?
+        </p>
+        <%= image_tag 'other/photo-1551339748-e366ebc87c9f.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
+        <h2>Jungle Run</h2>
+        <p>
+            The road through the jungle in Maenam is one of the most beautiful places on Koh Samui. The run takes you through the mountains in the middle of the island. You have 2 options on finishing points depending on your fitness level.
+            Option 1: The first stop is 4km away at an amazing viewpoint with breath taking views of Koh Samui and Koh Phangnan. This run/hike can be very testing because of the steep hills but it is definitely worth the effort. 
+            It really is an amazing experience and gives a great opportunity to take in the beauty of Thailand. We will have a trainer waiting at the finish point to take you the last 2km to Khun Si Waterfall.
+            Option 2: The second stop is 6km away and is only for guests with a high fitness level. You will take a dirt trail that leads to yet another amazing lookout called Khun Si viewpoint. This path leads you through a small jungle village and gives you an insight into the lives of the local people. Once you arrive here you can grab a water and take the short walk down to see Khun Si Waterfall.
+            After visiting the waterfall we will drive you back to the gym.
+            This run is a great opportunity to take advantage of the beauty of this amazing country.
+        </p>
         </div>
-    <% end%>
 </div>
