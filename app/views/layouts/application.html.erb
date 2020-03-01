@@ -11,10 +11,13 @@
 
   <body>
     <nav>
-    <% if user_signed_in? %>
-      Hello <%= current_user.full_name %>
-      <%= link_to "Sign Out", session_path, method: :delete,
-      data: {confirm: "Are you sure you want to sign out?"} %>
+      <div>
+        <h1> <%= link_to icon('fas', 'dumbbell'), root_path, { class: "navbar-link"} %> Fit-In </h1>
+      </div>
+      <% if user_signed_in? %>
+        Hello <%= current_user.full_name %>
+        <%= link_to "Sign Out", session_path, method: :delete,
+        data: {confirm: "Are you sure you want to sign out?"} %>
       <% else %>
         <%= link_to "Sign In", new_session_path %>
         <%= link_to "Sign Up", new_user_path %>
@@ -23,15 +26,15 @@
       <%# <a href="/">Home</a> %>
       <%= link_to 'Home', root_path %>
       |
-      <%= link_to 'Prepare', prepare_path %>
+      <%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %>
       |
-      <%= link_to 'Contact Us', contact_us_path %>
+      <%= icon('fab', 'whatsapp-square') %><%= link_to 'Contact Us', contact_us_path %>
       |
       <%= link_to 'Our Trainers', trainers_path %>
       |
-      <%= link_to 'Social Events', social_events_path %>
+      <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
       |
-      <%= link_to 'Workouts Booked', user_workouts_path %>
+      <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
       |
       <%= link_to 'Workouts Created', workouts_path %>
       |
@@ -39,7 +42,7 @@
       |
       <%= link_to 'New Class', new_class_schedule_path %>
       |
-      <%= link_to 'Food', food_items_path %>
+      <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
       |
       <%= link_to 'New Food Item', new_food_item_path %>
     </nav>
