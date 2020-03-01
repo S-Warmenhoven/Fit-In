@@ -1,8 +1,7 @@
-<h1>My Workouts</h1>
+<h1>My Booked Workouts</h1>
 
 <% @user_workouts.each do |user_workout| %>
 <div>
-    <h2><%=link_to( user_workout.user_id, user_workout_path(user_workout.id)) %></h2>
-    <p><%= user_friendly_range(user_workout.workout.start_time) %> to <%= readable_time(user_workout.workout.end_time) %></p>
+    <h2><%= user_friendly_range(user_workout.workout.start_time) %> to <%= readable_time(user_workout.workout.end_time) %> - <%=user_workout.workout.user.first_name%></h2>
 </div>
 <% end%>

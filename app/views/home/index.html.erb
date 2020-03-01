@@ -5,9 +5,6 @@
     <div class="grid-item card mt-4">
     <%= image_tag 'photo-1490225421893-2908ffad8593.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
     </div>
-    <div class="grid-item card mt-4">
-    <%= image_tag 'Classes-Schedule.jpg', alt: 'class-schedule', class: 'class-schedule' %>
-    </div>
     <h1>Class Schedule</h1>
         <h2>Monday</h2>
         <% @class_schedules.each do |c| %>
@@ -15,6 +12,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Tuesday</h2>
@@ -23,6 +22,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Wednesday</h2>
@@ -31,6 +32,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Thursday</h2>
@@ -39,6 +42,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Friday</h2>
@@ -47,6 +52,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Saturday</h2>
@@ -55,6 +62,8 @@
             <div>
                 <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
             </div>
+            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end%>
         <h2>Sunday - closed</h2>

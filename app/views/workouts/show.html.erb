@@ -3,7 +3,7 @@
 
 <%= link_to("Delete", workout_path(@workout), method: :delete, data:{confirm:'Are you sure?' }) %>
 <br />
-
+<% @user = current_user%>
 <%= link_to 'Edit', edit_workout_path(@workout.id)%>
-
-<td><%= link_to 'Book', new_user_workout_path(@workout), method: :create, data: { confirm: 'Are you sure?' } %></td>
+<%#= binding.pry%>
+<td><%= link_to 'Book', new_workout_user_workout_path(@workout, @user_workout) %></td>

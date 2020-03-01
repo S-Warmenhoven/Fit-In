@@ -5,28 +5,35 @@ class UserWorkoutsController < ApplicationController
     # before_action :find_user_workout, only: [:show]
 
     def index
-        @user_workouts = current_user.user_workouts.where(user_id: current_user) #if current_user 
+        @user_workouts = current_user.user_workouts
     end
 
     def show
     end
 
     def new
+       # binding.pry
         @user_workout = UserWorkout.new
+        @workout = Workout.find params[:workout_id]
+
+        create
     end
 
     def create
+       # binding.pry
         # @user_workout = UserWorkout.new(user: current_user, workout: @workout)
         # @user_workout.workout = @workout
         @user = current_user
         @user_workout = @user.workouts << @workout
-        if @user_workout.save 
+       # binding.pry
+
+        if @user_workout.errors.present?  
+            flash[:danger] = @user_workout.errors.full_messages.join(", ")
+            render @user
+        else
             flash[:success] = "Your workout session is booked"
-            redirect_to @user_workout
-        else 
-            flash[:danger] = user_workout.errors.full_messages.join(", ")
-            render 'workouts/show'
-        end
+            redirect_to @user
+       end
         # the above is the same as: 
         # `redirect_to workout_path(@workout)`
     end

@@ -11,11 +11,15 @@ Rails.application.routes.draw do
 
   get "contact_us" => "home#contact_us"
 
-  resources :users
+  resources :users do
+    resources :user_workouts
+  end
   resource :session, only: [:new, :create, :destroy]
 
   resources :workouts do
-    resources :user_workouts #do
+    resources :user_workouts
+
+    #resources :user_workouts do
       # put :approving
       # put :rejecting
     #end

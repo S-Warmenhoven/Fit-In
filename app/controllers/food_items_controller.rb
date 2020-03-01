@@ -1,5 +1,5 @@
 class FoodItemsController < ApplicationController
-
+    before_action :find_food_item, only: [:show, :edit,:update, :destroy]
   # GET /food_items
   # GET /food_items.json
   def index
@@ -53,10 +53,8 @@ class FoodItemsController < ApplicationController
   # DELETE /food_items/1.json
   def destroy
     @food_item.destroy
-    respond_to do |format|
-      format.html { redirect_to food_items_url, notice: 'food_item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Food Item successfully deleted.'
+    redirect_to food_items_path
   end
 
   private
@@ -65,4 +63,12 @@ class FoodItemsController < ApplicationController
     def food_item_params
       params.require(:food_item).permit(:name, :description, :price, :meal_number, :image_url, :section_id)
     end
+
+    def find_food_item
+        @food_item = FoodItem.find params[:id]
+        if @food_item === nil
+            redirect_to root_path, notice: "Food Item Does Not Exist"
+        end
+    end
+
 end

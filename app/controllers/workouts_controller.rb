@@ -74,7 +74,7 @@ class WorkoutsController < ApplicationController
     private
 
     def find_workout
-        @workout=Workout.find params[:id]
+        @workout = Workout.find params[:id]
         if @workout === nil
             redirect_to root_path, notice: "Workout Does Not Exist"
         end

@@ -1,15 +1,21 @@
 <div class="container">
 
     <h1><%= @user.full_name %></h1>
-    <button class="sign_up_button">
-        <%= link_to "Edit Profile", edit_user_path(@user) %>
-    </button>
+    
+    <% Workout.all.each do |workout| %>
+        
+        <%= workout.start_time %>
 
+        <%= workout.end_time %>
+<%= link_to 'Book', new_workout_user_workout_path(workout) %></td>
+
+    <% end %>
     <div class="user-container">
         <% if current_user.workouts.length > 0 %>
             <div>
                 <h2>Your Workouts</h2>
-                <%= render 'shared/workouts_index',workouts: current_user.workouts %>
+                <%#= render workouts_url %>
+                <%#= render 'shared/workouts_index',workouts: current_user.workouts %>
             </div>
         <% else %>
             <div class="link_container">
@@ -25,7 +31,7 @@
     <% if current_user.user_workouts.length > 0 %>
         <div>
             <h2>Your booked workouts:</h2>
-            <%= render 'shared/user_workouts_index',user_workouts: current_user.user_workouts %>
+            <%#= render 'shared/user_workouts_index',user_workouts: current_user.user_workouts %>
         </div>
     <% else %>
         <div class="link_container">
