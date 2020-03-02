@@ -18,13 +18,19 @@
         Hello <%= current_user.full_name %>
         <%= link_to "Sign Out", session_path, method: :delete,
         data: {confirm: "Are you sure you want to sign out?"} %>
+        <% if current_user.is_admin? %>
+          |
+          <%= link_to 'New Class', new_class_schedule_path %>
+          |
+          <%= link_to 'New Food Item', new_food_item_path %>
+        <% end %>
       <% else %>
         <%= link_to "Sign In", new_session_path %>
         <%= link_to "Sign Up", new_user_path %>
       <% end %>
       <hr>
       <%# <a href="/">Home</a> %>
-      <%= link_to 'Home', root_path %>
+      <%= link_to 'Classes', root_path %>
       |
       <%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %>
       |
@@ -36,15 +42,11 @@
       |
       <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
       |
-      <%= link_to 'Workouts Created', workouts_path %>
+      <%= link_to 'Available Workouts', workouts_path %>
       |
       <%= link_to 'New Training session', new_workout_path %>
       |
-      <%= link_to 'New Class', new_class_schedule_path %>
-      |
       <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
-      |
-      <%= link_to 'New Food Item', new_food_item_path %>
     </nav>
     <p>
     <%#= flash[:notice] || flash[:alert]%>

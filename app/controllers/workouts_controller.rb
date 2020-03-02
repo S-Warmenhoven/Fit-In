@@ -4,7 +4,8 @@ class WorkoutsController < ApplicationController
     #must find workout before auth because otherwise workout user will be nil
     
     def index 
-        @workouts = Workout.where(user_id: current_user)
+        # @workouts = Workout.where(user_id: current_user)
+        @workouts = Workout.all
     end
 
     def new
@@ -67,9 +68,9 @@ class WorkoutsController < ApplicationController
         redirect_to workouts_path
     end
 
-    def booked 
-        @workouts = current_user.booked_workouts.order('user_workouts.created_at DESC')
-    end
+    # def booked 
+    #     @workouts = current_user.booked_workouts.order('user_workouts.created_at DESC')
+    # end
 
     private
 
