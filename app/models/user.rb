@@ -27,6 +27,8 @@ class User < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
 
+    validates :meals, numericality: {greater_than_or_equal_to: 0}
+
     def full_name
         "#{first_name} #{last_name}"
     end

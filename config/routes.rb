@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :user_workouts
+    resources :user_meals
   end
   resource :session, only: [:new, :create, :destroy]
 
@@ -27,7 +28,12 @@ Rails.application.routes.draw do
 
   resources :user_workouts
 
-  resources :food_items
+  resources :food_items do
+    get "order_by_price" => "user_meals#order_by_price"
+    get "order_by_meal_count" => "user_meals#order_by_meal"
+  end
+
+  resources :user_meals
 
 
 end
