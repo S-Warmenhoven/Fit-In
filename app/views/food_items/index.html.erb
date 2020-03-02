@@ -1,26 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Menu</h1>
-<h2>Cafe hours: 8am to 8pm</h2>
-<h2>Usual order wait time: 20min (longer during busy hours/seasons)</h2>
+<!-- Start Restaurant Menu -->
+<section id="mu-restaurant-menu">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="mu-restaurant-menu-area">
+          <div class="mu-title">
+            <span class="mu-subtitle">
+                <h1>Cafe hours: 8am to 8pm</h1>
+                <h1>Usual order wait time: 20min (longer during busy hours/seasons)</h1>
+                <p>Our cafe's menu is perfect for everyone. We have super healthy dishes available for fitness enthusiasts and for people who are following our weight-loss program.Our healthy dishes won't just fulfill your nutrient needs, they will also make you fall in love with being healthy and will ensure that you never again think that eating balanced is eating boring. If you need extra protein after your workout we also got that covered, our cooks will blend up a really nice smoothie of your choice in no time to get that protein in as soon as you want and to feel so satisfied after your hard workout. Doesn't sound right for you ? Well, we also got some unhealthy meals for those who just need that 1 cheat meal or for those who just want to enjoy their time and not worry about fitness for a week.</p>
+                <h1>Menu</h1>
+            </span>
+          </div>
+          <div class="mu-restaurant-menu-content">
+            <%= render "navbar" %>
+            <%= render "control_row" %>
+            <%= render "menu_content" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<p>Our cafe's menu is perfect for everyone. We have super healthy dishes available for fitness enthusiasts and for people who are following our weight-loss program.Our healthy dishes won't just fulfill your nutrient needs, they will also make you fall in love with being healthy and will ensure that you never again think that eating balanced is eating boring. If you need extra protein after your workout we also got that covered, our cooks will blend up a really nice smoothie of your choice in no time to get that protein in as soon as you want and to feel so satisfied after your hard workout. Doesn't sound right for you ? Well, we also got some unhealthy meals for those who just need that 1 cheat meal or for those who just want to enjoy their time and not worry about fitness for a week.</p>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /.modal -->
+<!-- End Restaurant Menu -->
 
-<div>
-    <% @food_items.each do |food_item| %>
-      <% if food_item.image_url != "" %>
-        <%= image_tag food_item.image_url, alt: 'food_item-image', class: 'food_item' %>
-      <% end %>
-      <h2><%= food_item.name %></h2>
-      <p><%= food_item.description %></p>
-      <p>Price: <%= food_item.price %> thb</p>
-      <p>Meal Count: # <%= food_item.meal_number %></p>
-        <button><%= link_to 'Show', food_item %></button>
-        <button><%= link_to 'Edit', edit_food_item_path(food_item) %></button>
-        <button><%= link_to 'Destroy', food_item, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-      
-    <% end %>
-</div>
 
 
 

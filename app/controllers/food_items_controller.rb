@@ -5,8 +5,36 @@ class FoodItemsController < ApplicationController
     
     # GET /food_items
     # GET /food_items.json
+    # def index
+    #     @food_items = FoodItem.all
+    # end
+
     def index
-        @food_items = FoodItem.all
+
+        @sections = Section.all
+        
+        if params[:section]
+            @section = Section.find_by_name params[:section]
+            @food_items = FoodItem.where(section_id: @section.id.to_s)
+        else
+            @food_items = FoodItem.all
+        end
+
+        if params[:search]
+            @food_items = @food_items.search(params[:search])
+        end
+      
+        if params[:sort]
+            if params[:dir]
+              @dir = params[:dir]
+            else
+              @dir = 'asc'
+            end
+      
+            @food_items = @food_items.order("#{params[:sort]} #{@dir}")
+        end
+      
+        # @order_item = current_order.order_items.new
     end
 
     # GET /food_items/1

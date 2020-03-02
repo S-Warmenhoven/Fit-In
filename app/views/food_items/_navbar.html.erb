@@ -1,0 +1,17 @@
+<!-- Start navbar -->
+<ul class="nav nav-tabs mu-restaurant-menu">
+  <li><%= link_to 'ALL', food_items_path, class: "nav-link #{'active' if params[:section].nil?}" %></li>
+  <% @sections.each do |section| %>
+    <li><%= link_to section.name, food_items_path(section: section.name),
+            class: "nav-link #{'active' if params[:section] == section.name}" %></li>
+  <% end %>
+  <li>
+    <%= form_tag nil, method: 'get', class: 'form-group form-inline' do %>
+      <%= text_field_tag :search, params[:search], class: "nav-link", placeholder: "Search" %>
+      <%= button_tag(:id =>'search-button', :class => "btn btn-none", placeholder: "Search" ) do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+  </li>
+</ul>
+<!-- End navbar -->
