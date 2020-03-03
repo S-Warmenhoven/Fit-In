@@ -1,6 +1,14 @@
+<div>
+    <%= form_tag nil, method: 'get', class: 'form-group form-inline' do %>
+      <%= text_field_tag :search, params[:search], class: "nav-link", placeholder: "Search" %>
+      <%= button_tag(:id =>'search-button', :class => "btn btn-none", placeholder: "Search" ) do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+</div>
+
 <% @workouts.each do |workout| %>
 <div>
-    <h2><%=link_to( workout.user.first_name, workout_path(workout.id)) %></h2>
-    <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %></p>
+    <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> - <%=link_to( workout.user.first_name, workout_path(workout.id)) %></p>
 </div>
 <% end%>

@@ -31,10 +31,11 @@
             <%= icon('fas', 'utensils') %><%= link_to 'New Food Item', new_food_item_path %>
             |
             <%= icon('fas', 'receipt') %><%= link_to 'All Orders', user_meals_path %>
+            |
+            <%= icon('fas', 'user-plus') %><%= link_to "Sign Up", new_user_path %>
           <% end %>
         <% else %>
           <%= icon('fas', 'sign-in-alt') %><%= link_to "Sign In", new_session_path %>
-          <%= icon('fas', 'user-plus') %><%= link_to "Sign Up", new_user_path %>
         <% end %>
         <hr>
         <%# <a href="/">Home</a> %>
@@ -45,16 +46,20 @@
         <%= icon('fab', 'whatsapp-square') %><%= link_to 'Contact Us', contact_us_path %>
         |
         <%= link_to 'Our Trainers', trainers_path %>
-        |
-        <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
-        |
-        <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
-        |
-        <%= icon('fas', 'calendar-alt') %><%= link_to 'Available Workouts', workouts_path %>
-        |
-        <%= icon('far', 'calendar-plus') %><%= link_to 'New Training session', new_workout_path %>
-        |
-        <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
+        <% if user_signed_in? %>
+          |
+          <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
+          |
+          <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
+          |
+          <%= icon('fas', 'calendar-alt') %><%= link_to 'Available Workouts', workouts_path %>
+          |
+          <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
+          <% if current_user.role == "trainer" %>
+            |
+            <%= icon('far', 'calendar-plus') %><%= link_to 'New Training session', new_workout_path %>
+          <% end %>
+        <% end %>
       </nav>
       <p>
       <%#= flash[:notice] || flash[:alert]%>
