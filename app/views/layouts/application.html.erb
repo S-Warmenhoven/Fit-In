@@ -1,61 +1,70 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestProj3</title>
+    <title>Fit-In</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    
   </head>
 
   <body>
-    <nav>
-      <div>
-        <h1> <%= link_to icon('fas', 'dumbbell'), root_path, { class: "navbar-link"} %> Fit-In </h1>
-      </div>
-      <% if user_signed_in? %>
-        Hello <%= current_user.full_name %>
-        <%= link_to "Sign Out", session_path, method: :delete,
-        data: {confirm: "Are you sure you want to sign out?"} %>
-        <% if current_user.is_admin? %>
+    <div class="container">
+      <nav>
+        <div>
+          <h1> <%= link_to icon('fas', 'dumbbell'), root_path, { class: "navbar-link"} %> Fit-In </h1>
+        </div>
+        <% if user_signed_in? %>
+          Hello <%= current_user.full_name %>
+          <%= icon('fas', 'sign-out-alt') %><%= link_to "Sign Out", session_path, method: :delete,
+          data: {confirm: "Are you sure you want to sign out?"} %>
           |
-          <%= link_to 'New Class', new_class_schedule_path %>
+          <%= icon('fas', 'user') %><%= link_to 'My Profile', "/users/user.id" %>
           |
-          <%= link_to 'New Food Item', new_food_item_path %>
+          <%= icon('fas', 'shopping-cart') %><%= link_to 'My Orders', user_meals_path %>
+          <% if current_user.is_admin? %>
+            |
+            <%= icon('far', 'calendar-plus') %><%= link_to 'New Class', new_class_schedule_path %>
+            |
+            <%= icon('fas', 'utensils') %><%= link_to 'New Food Item', new_food_item_path %>
+            |
+            <%= icon('fas', 'receipt') %><%= link_to 'All Orders', user_meals_path %>
+          <% end %>
+        <% else %>
+          <%= icon('fas', 'sign-in-alt') %><%= link_to "Sign In", new_session_path %>
+          <%= icon('fas', 'user-plus') %><%= link_to "Sign Up", new_user_path %>
         <% end %>
-      <% else %>
-        <%= link_to "Sign In", new_session_path %>
-        <%= link_to "Sign Up", new_user_path %>
+        <hr>
+        <%# <a href="/">Home</a> %>
+        <%= link_to 'Classes', root_path %>
+        |
+        <%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %>
+        |
+        <%= icon('fab', 'whatsapp-square') %><%= link_to 'Contact Us', contact_us_path %>
+        |
+        <%= link_to 'Our Trainers', trainers_path %>
+        |
+        <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
+        |
+        <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
+        |
+        <%= icon('fas', 'calendar-alt') %><%= link_to 'Available Workouts', workouts_path %>
+        |
+        <%= icon('far', 'calendar-plus') %><%= link_to 'New Training session', new_workout_path %>
+        |
+        <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
+      </nav>
+      <p>
+      <%#= flash[:notice] || flash[:alert]%>
+      <% flash.each do |type, message| %>
+        <div class="flash flash-<%= type %>">
+          <%= message %>
+        </div>
       <% end %>
-      <hr>
-      <%# <a href="/">Home</a> %>
-      <%= link_to 'Classes', root_path %>
-      |
-      <%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %>
-      |
-      <%= icon('fab', 'whatsapp-square') %><%= link_to 'Contact Us', contact_us_path %>
-      |
-      <%= link_to 'Our Trainers', trainers_path %>
-      |
-      <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
-      |
-      <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
-      |
-      <%= link_to 'Available Workouts', workouts_path %>
-      |
-      <%= link_to 'New Training session', new_workout_path %>
-      |
-      <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
-    </nav>
-    <p>
-    <%#= flash[:notice] || flash[:alert]%>
-    <% flash.each do |type, message| %>
-      <div class="flash flash-<%= type %>">
-        <%= message %>
-      </div>
-    <% end %>
-    </p>
-    <%= yield %>
+      </p>
+      <%= yield %>
+    </div>
   </body>
 </html>

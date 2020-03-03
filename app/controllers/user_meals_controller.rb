@@ -4,7 +4,12 @@ class UserMealsController < ApplicationController
     before_action :find_food_item, only: [:create]
 
     def index
-        @user_meals = current_user.user_meals
+        @user = current_user
+        if @user.is_admin?
+            @user_meals = UserMeal.all.order(created_at: :DESC)
+        else
+            @user_meals = UserMeal.where(user_id:current_user.id)
+        end
     end
 
     def show

@@ -16,7 +16,9 @@ class UsersController < ApplicationController
         end             
     end
     def show
+        @users = User.all
         @user = current_user
+        @user_workouts = UserWorkout.where(user_id: @user.id)
     end
     def index
         @users = User.all

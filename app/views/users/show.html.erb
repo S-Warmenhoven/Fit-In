@@ -1,48 +1,20 @@
 <div class="container">
 
     <h1><%= @user.full_name %></h1>
+    <h2>Meals left: <%= @user.meals %></h2>
+    <h2>Food Account (owing): <%= number_with_precision(@user.food_account, :precision => 2) %> thb</h2>
     
-    <% Workout.all.each do |workout| %>
-        
-        <%= workout.start_time %>
 
-        <%= workout.end_time %>
-<%= link_to 'Book', new_workout_user_workout_path(workout) %></td>
-
-    <% end %>
-    <div class="user-container">
-        <% if current_user.workouts.length > 0 %>
-            <div>
-                <h2>Your Workouts</h2>
-                <%#= render workouts_url %>
-                <%#= render 'shared/workouts_index',workouts: current_user.workouts %>
-            </div>
-        <% else %>
-            <div class="link_container">
-                <h3>Add a workout ☞</h3>
-                <div>
-                <%= link_to new_workout_path do %>
-                    <%= image_tag "https://i.ibb.co/GtWqbN8/room1.jpg", class: "img-links" %>
-                <% end %>
-                </div>
+    <% if @user_workouts.length > 0 %>
+        <h2>My Booked Workouts</h2>
+        <% @user_workouts.each do |user_workout| %>
+            <p><%= user_friendly_range(user_workout.workout.start_time) %> to <%= readable_time(user_workout.workout.end_time) %> with <%= user_workout.workout.user.first_name %></p>
         <% end %>
-    </div>
-
-    <% if current_user.user_workouts.length > 0 %>
-        <div>
-            <h2>Your booked workouts:</h2>
-            <%#= render 'shared/user_workouts_index',user_workouts: current_user.user_workouts %>
-        </div>
-    <% else %>
-        <div class="link_container">
-            <h3> Add a user_workout ☞ </h3>
-            <div>
-            <%= link_to new_user_workout_path do %>
-                <%= image_tag "https://i.ibb.co/qpR25vS/yoga.jpg", class: "img-links" %>
-            <% end %>
-            </div>
-        </div>
     <% end %>
-
-    </div>
-</div>
+    
+    <% if @user.workouts.length > 0 %>
+        <h2>My Available Workouts</h2>
+        <% @user.workouts.each do |workout| %>
+            <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> with <%= workout.user.first_name %></p>
+        <% end %>
+    <% end %>

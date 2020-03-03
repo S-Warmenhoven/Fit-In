@@ -5,7 +5,7 @@
       <% end %>
       <h2><%= food_item.name %></h2>
       <p><%= food_item.description %></p>
-      <p>Price: <%= food_item.price %> thb</p>
+      <p>Price: <%= number_with_precision(food_item.price, :precision => 2) %> thb</p>
       <p>Meal Count: # <%= food_item.meal_number %></p>
         <button><%= link_to 'Edit', edit_food_item_path(food_item) %></button>
         <button><%= link_to 'Destroy', food_item, method: :delete, data: { confirm: 'Are you sure?' } %></button>

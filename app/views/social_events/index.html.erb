@@ -11,17 +11,16 @@
 
   <tbody>
     <% @social_events.each do |social_event| %>
-      <% if social_event.image_url != "" %>
-        <%= image_tag social_event.image_url, alt: 'trainer-image', class: 'trainer' %>
-      <% end %>
-      <h2><%= social_event.title %></h2>
-      <p>What? <%= social_event.description %></p>
-      <p>When? <%= social_event.when %></p>
-      <tr>
-        <td><%= link_to 'Show', social_event %></td>
-        <td><%= link_to 'Edit', edit_social_event_path(social_event) %></td>
-        <td><%= link_to 'Destroy', social_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div>
+        <% if social_event.image_url != "" %>
+          <%= image_tag social_event.image_url, alt: 'trainer-image', class: 'trainer' %>
+        <% end %>
+        <h2><%= social_event.title %></h2>
+        <p>What? <%= social_event.description %></p>
+        <p>When? <%= social_event.when %></p>
+          <%= link_to 'Edit', edit_social_event_path(social_event) %>
+          <%= link_to 'Destroy', social_event, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     <% end %>
   </tbody>
 </table>

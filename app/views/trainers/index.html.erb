@@ -11,20 +11,23 @@
 
   <tbody>
     <% @trainers.each do |trainer| %>
-      <% if trainer.image_url != "" %>
-        <%= image_tag trainer.image_url, alt: 'trainer-image', class: 'trainer' %>
-      <% end %>
-      <h2><%= trainer.name %></h2>
-      <p><%= trainer.description %></p>
-      <tr>
-        <td><%= link_to 'Show', trainer %></td>
-        <td><%= link_to 'Edit', edit_trainer_path(trainer) %></td>
-        <td><%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div>
+        <% if trainer.image_url != "" %>
+          <%= image_tag trainer.image_url, alt: 'trainer-image', class: 'trainer' %>
+        <% end %>
+        <h2><%= trainer.name %></h2>
+        <p><%= trainer.description %></p>
+        <% if can? :crud, trainer %>
+            <%= link_to 'Edit', edit_trainer_path(trainer) %>
+            <%= link_to 'Destroy', trainer, method: :delete, data: { confirm: 'Are you sure?' } %>  
+        <% end %>
+      </div>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Trainer', new_trainer_path %>
+<% if can? :crud, @trainers %>
+  <%= link_to 'New Trainer', new_trainer_path %>
+<% end %>

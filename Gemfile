@@ -23,7 +23,11 @@ gem 'bcrypt', '~> 3.1.7'
 # Authorization
 gem 'cancancan'
 
+#AASM State for reservations
 gem 'aasm'
+
+# Semantic UI
+gem 'semantic-ui-sass'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

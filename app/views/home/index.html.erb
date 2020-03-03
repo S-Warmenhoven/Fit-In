@@ -1,6 +1,7 @@
 <div class="grid-container">
     <div class="grid-item card mt-4">
-    <h1>Welcome to Train-In<h1>
+    <h1>Welcome to Fit-In<h1>
+    <p>Fit-In more time for fun. Book. Order. Go!</p>
     </div>
     <div class="grid-item card mt-4">
     <%= image_tag 'photo-1490225421893-2908ffad8593.jpeg', alt: 'welcome-image', class: 'welcome-image' %>
@@ -9,61 +10,73 @@
         <h2>Monday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Monday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Tuesday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Tuesday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Wednesday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Wednesday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Thursday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Thursday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Friday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Friday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Saturday</h2>
         <% @class_schedules.each do |c| %>
             <% if c.day_of_week == "Saturday" %>
-            <div>
-                <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
-            </div>
-            <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
-            <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <div>
+                    <p><%= c.title %> - <%= readable_time(c.start_time) %> to <%= readable_time(c.end_time) %></p>
+                </div>
+                <% if can? :crud, c%>
+                    <td><%= link_to 'Edit', edit_class_schedule_path(c) %></td>
+                    <td><%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <% end%>
             <% end %>
         <% end%>
         <h2>Sunday - closed</h2>
