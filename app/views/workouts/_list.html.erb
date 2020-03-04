@@ -8,7 +8,11 @@
 </div>
 
 <% @workouts.each do |workout| %>
-<div>
-    <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> - <%=link_to( workout.user.first_name, workout_path(workout.id)) %></p>
-</div>
+  <% @user_workouts.each do |user_workout| %>
+    <% if user_workout.workout != workout %>
+      <div>
+        <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> - <%=link_to( workout.user.first_name, workout_path(workout.id)) %></p>
+      </div>
+    <% end %>
+  <% end %>
 <% end%>

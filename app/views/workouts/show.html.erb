@@ -5,5 +5,5 @@
 <br />
 <% @user = current_user%>
 <%= link_to 'Edit', edit_workout_path(@workout.id)%>
-<%#= binding.pry%>
+
 <td><%= link_to 'Book', new_workout_user_workout_path(@workout, @user_workout) %></td>

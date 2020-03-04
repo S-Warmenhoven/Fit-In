@@ -5,6 +5,7 @@ class WorkoutsController < ApplicationController
     
     def index 
         # @workouts = Workout.where(user_id: current_user)
+        @user_workouts = UserWorkout.all
         @workouts = Workout.all.order(user_id: :ASC)
     end
 
