@@ -1,14 +1,8 @@
 class FoodItemsController < ApplicationController
-    
     before_action :authenticate_user!
     before_action :find_food_item, only: [:show, :edit,:update, :destroy]
+    before_action :authorize!, only: [:create, :edit, :update, :destroy]
     
-    # GET /food_items
-    # GET /food_items.json
-    # def index
-    #     @food_items = FoodItem.all
-    # end
-
     def index
 
         @sections = Section.all
@@ -30,11 +24,9 @@ class FoodItemsController < ApplicationController
             else
               @dir = 'asc'
             end
-      
             @food_items = @food_items.order("#{params[:sort]} #{@dir}")
         end
       
-        # @order_item = current_order.order_items.new
     end
 
     # GET /food_items/1
@@ -99,6 +91,12 @@ class FoodItemsController < ApplicationController
         @food_item = FoodItem.find params[:id]
         if @food_item === nil
             redirect_to root_path, notice: "Food Item Does Not Exist"
+        end
+    end
+
+    def authorize!
+        unless can?(:crud, @food_item)
+            redirect_to root_path, alert: 'Not Authorized'
         end
     end
 

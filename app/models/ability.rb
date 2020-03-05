@@ -16,5 +16,9 @@ class Ability
       can :crud, Workout do |workout|
         workout.user == user 
       end
+
+      can :crud, Workout do |workout|
+        workout.user == user 
+      end
   end
 end

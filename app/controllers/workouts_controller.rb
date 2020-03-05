@@ -1,15 +1,20 @@
 class WorkoutsController < ApplicationController
     before_action :authenticate_user!
     before_action :find_workout, only: [:show, :edit,:update, :destroy]
-    #must find workout before auth because otherwise workout user will be nil
+    before_action :authorize!, only: [:create, :edit, :update, :destroy]
     
-    def index 
-        # @workouts = Workout.where(user_id: current_user)
-        @workouts = Workout.all.order(start_time: :ASC)
-        @available_workouts = Workout.all.order(start_time: :ASC)
-        # @user_workouts = UserWorkout.all
-        # @user_workouts.each do |user_workout|
-        #     @user_workout = user_workout.where(workout: workout)
+    def index
+        # if params[:search]
+        #     @search_term = params[:search]
+        #     @workouts = Workout
+        #         .search_by(@search_term)
+        #         .order(start_time: :ASC)
+        #     @available_workouts = Workout
+        #         .search_by(@search_term)
+        #         .order(start_time: :ASC)
+        # else
+            @workouts = Workout.all.order(start_time: :ASC)
+            @available_workouts = Workout.all.order(start_time: :ASC)
         # end
     end
 
@@ -44,27 +49,6 @@ class WorkoutsController < ApplicationController
 
     def show
         @user_workout = UserWorkout.new
-        
-        # @user_workout = UserWorkout.new
-        # @user_workouts = @workout.user_workouts.all
-        # @user_workout = @workout.find_by(user: current_user)
-        # #if I'm a trainer (workout owner)
-        # if @course.user == current_user 
-        #     if can? :crud, @course
-        #         @bookings = @course.bookings.order(created_at: :desc)
-        #         @enrollments = @course.enrollments.order(created_at: :desc)
-        #     else
-        #         @bookings = @course.bookings.where(hidden: false).order(created_at: :desc)
-        #         @enrollments = @course.enrollments.where(hidden: false).order(created_at: :desc)
-        #     end
-        # else #else its a student-user or room-mananger-user
-        #     @bookings = @course.bookings.order(created_at: :desc)
-        #     if current_user && current_user.enrollments  
-        #         @enrollments = current_user.enrollments.map{
-        #             |enrollment| Course.find(enrollment.course_id) 
-        #         }
-        #     end
-        # end
     end
 
     def destroy
@@ -72,10 +56,6 @@ class WorkoutsController < ApplicationController
         flash[:notice] = 'Workout successfully deleted.'
         redirect_to workouts_path
     end
-
-    # def booked 
-    #     @workouts = current_user.booked_workouts.order('user_workouts.created_at DESC')
-    # end
 
     private
 
@@ -88,6 +68,12 @@ class WorkoutsController < ApplicationController
 
     def workout_params
         params.require(:workout).permit(:start_time, :end_time, :user_workouts, :user_id, :id)
+    end
+
+    def authorize!
+        unless can?(:crud, @workout)
+            redirect_to root_path, alert: 'Not Authorized'
+        end
     end
 
 end

@@ -2,7 +2,7 @@ class UserWorkoutsController < ApplicationController
     
     before_action :authenticate_user!
     before_action :find_workout, only: [:create]
-    # before_action :find_user_workout, only: [:show]
+    
 
     def index
         @user_workouts = current_user.user_workouts
@@ -12,7 +12,6 @@ class UserWorkoutsController < ApplicationController
     end
 
     def new
-       # binding.pry
         @user_workout = UserWorkout.new
         @workout = Workout.find params[:workout_id]
         

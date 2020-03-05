@@ -7,9 +7,10 @@
       <p><%= food_item.description %></p>
       <p>Price: <%= number_with_precision(food_item.price, :precision => 2) %> thb</p>
       <p>Meal Count: # <%= food_item.meal_number %></p>
+      <button><%= link_to 'Order by Price', food_item_order_by_price_path(food_item, @user_meal), data: { confirm: 'Are you sure? This will be added to your account.' } %></button>
+      <button><%= link_to 'Order by Meal Count', food_item_order_by_meal_count_path(food_item, @user_meal), data: { confirm: 'Are you sure? This will be subtracted from your Meal Count.' } %></button>
+      <% if can? :crud, food_item %>
         <button><%= link_to 'Edit', edit_food_item_path(food_item) %></button>
         <button><%= link_to 'Destroy', food_item, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-        <button><%= link_to 'Order by Price', food_item_order_by_price_path(food_item, @user_meal), data: { confirm: 'Are you sure? This will be added to your account.' } %></button>
-        <button><%= link_to 'Order by Meal Count', food_item_order_by_meal_count_path(food_item, @user_meal), data: { confirm: 'Are you sure? This will be subtracted from your Meal Count.' } %></button>
-    
+      <% end %>
 </div>

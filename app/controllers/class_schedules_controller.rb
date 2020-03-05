@@ -1,12 +1,14 @@
 class ClassSchedulesController < ApplicationController
     before_action :authenticate_user!
     before_action :find_class_schedule, only: [:edit, :update, :destroy]
+    before_action :authorize!, only: [:create, :edit, :update, :destroy]
 
     def new
         @class_schedule = ClassSchedule.new
     end
 
     def create
+        if can? :crud
         @class_schedule = ClassSchedule.new class_schedule_params
         @class_schedule.user = current_user
         if @class_schedule.save
@@ -49,4 +51,11 @@ class ClassSchedulesController < ApplicationController
     def class_schedule_params
         params.require(:class_schedule).permit(:title, :day_of_week, :start_time, :end_time)
     end
+
+    def authorize!
+        unless can?(:crud, @class_schedule)
+            redirect_to root_path, alert: 'Not Authorized'
+        end
+    end
+
 end

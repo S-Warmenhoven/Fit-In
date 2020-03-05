@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-    # before_action :user_params, only: [:index]
     before_action :find_user, only: [:edit,:update, :destroy]
+    before_action :authorize!, only: [:index, :create, :edit, :update, :destroy]
 
     def new
         @user = User.new
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     def create
         @user = User.new user_params
         if @user.save
-            # session[:user_id] = @user.id
             redirect_to root_path
         else
             render :new
@@ -20,7 +19,12 @@ class UsersController < ApplicationController
     def show
         @users = User.all
         @user = current_user
-        @user_workouts = UserWorkout.where(user_id: @user.id)
+        # if user is trainer
+        @trainer_workouts = Workout
+        .where(user_id:@user.id)
+        .order(start_time: :ASC)
+        # if user is guest
+        @guest_workouts = UserWorkout.where(user_id: @user.id) 
     end
 
     def index
@@ -31,14 +35,12 @@ class UsersController < ApplicationController
     end
 
     def update
-        
         if @user.update user_params
             flash[:notice] = 'Updated Successfully'
             redirect_to users_path
         else
             render :edit
         end
-
     end
 
     def destroy
@@ -59,6 +61,12 @@ class UsersController < ApplicationController
         @user = User.find params[:id]
         if @user === nil
             redirect_to root_path, notice: "User Does Not Exist"
+        end
+    end
+
+    def authorize!
+        unless can?(:crud, @user)
+            redirect_to root_path, alert: 'Not Authorized'
         end
     end
 

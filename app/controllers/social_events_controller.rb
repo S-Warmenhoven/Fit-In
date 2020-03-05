@@ -1,7 +1,8 @@
 class SocialEventsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :set_social_event, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize!, only: [:create, :edit, :update, :destroy]
+  
   # GET /social_events
   # GET /social_events.json
   def index
@@ -72,4 +73,11 @@ class SocialEventsController < ApplicationController
     def social_event_params
       params.require(:social_event).permit(:title, :description, :image_url, :when, :user_id)
     end
+
+    def authorize!
+      unless can?(:crud, @social_event)
+          redirect_to root_path, alert: 'Not Authorized'
+      end
+    end
+
 end

@@ -1,20 +1,50 @@
-<div class="container">
 
     <h1><%= @user.full_name %></h1>
-    <h2>Meals left: <%= @user.meals %></h2>
-    <h2>Food Account (owing): <%= number_with_precision(@user.food_account, :precision => 2) %> thb</h2>
+    <h3>Meals left: <%= @user.meals %></h3>
+    <h3>Food Account (owing): <%= number_with_precision(@user.food_account, :precision => 2) %> thb</h3>
     
 
-    <% if @user_workouts.length > 0 %>
-        <h2>My Booked Workouts</h2>
-        <% @user_workouts.each do |user_workout| %>
+    <% if @guest_workouts.length > 0 %>
+        <h3 class="booked">My Booked Workouts</h3>
+        <% @guest_workouts.each do |user_workout| %>
             <p><%= user_friendly_range(user_workout.workout.start_time) %> to <%= readable_time(user_workout.workout.end_time) %> with <%= user_workout.workout.user.first_name %></p>
+        <hr>
         <% end %>
     <% end %>
     
-    <% if @user.workouts.length > 0 %>
-        <h2>My Available Workouts</h2>
-        <% @user.workouts.each do |workout| %>
-            <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> with <%= workout.user.first_name %></p>
+    <% if @trainer_workouts.length > 0 %>
+        <h3 class="booked">My Booked Workouts:</h3>
+        <% @trainer_workouts.each do |workout| %>
+            <% if !workout.user_workouts.empty? %> 
+                <% workout.user_workouts.each do |guest_workout| %>
+                <div>
+                    <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> with <%= guest_workout.user.first_name %></p>
+                    <hr>
+                    <%= link_to 'Edit', edit_workout_path(workout.id)%>
+                    <br />
+                    <%= link_to "Delete", workout_path(workout), method: :delete, data:{confirm:'Are you sure?' } %>
+                    <hr>
+                    <br />
+                </div>
+                <% end %>
+            <% end %>
         <% end %>
-    <% end %>
+    <% end%>
+    
+    <% if @trainer_workouts.length > 0 %>
+        <h3 class="available">My Available Workouts:</h3>
+        <% @trainer_workouts.each do |workout| %>
+            <% if workout.user_workouts.empty? %> 
+                <div>
+                    <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %></p>
+                    <hr>
+                    <%= link_to 'Edit', edit_workout_path(workout.id)%>
+                    <br />
+                    <%= link_to "Delete", workout_path(workout), method: :delete, data:{confirm:'Are you sure?' } %>
+                    <hr>
+                    <br />
+                </div>
+            <% end %>
+        <% end %>
+    <% end%>
+

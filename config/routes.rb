@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "contact_us" => "home#contact_us"
 
+  get "cafe" => "home#cafe"
+
   resources :users do
     resources :user_workouts
     resources :user_meals

@@ -1,10 +1,13 @@
-<div>
-    <%= form_tag nil, method: 'get', class: 'form-group form-inline' do %>
-      <%= text_field_tag :search, params[:search], class: "nav-link", placeholder: "Search" %>
-      <%= button_tag(:id =>'search-button', :class => "btn btn-none", placeholder: "Search" ) do %>
-        <i class="fa fa-search"></i>
+<h3>Search by Trainer:</h3>
+<div class="container search">
+      <%= form_tag nil, method: 'get' do %>
+        <div class="search">
+          <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+        </div>
+        <%= button_tag(:id =>'search-button', placeholder: "Search" ) do %>
+          <i class="fa fa-search"></i>
+        <% end %>
       <% end %>
-    <% end %>
 </div>
 
   
@@ -12,6 +15,7 @@
     <% if workout.user_workouts.empty? %> 
   <div>
     <p><%= user_friendly_range(workout.start_time) %> to <%= readable_time(workout.end_time) %> - <%=link_to( workout.user.first_name, workout_path(workout.id)) %></p>
+    <hr />
   </div>
     <% end %>
 <% end %>

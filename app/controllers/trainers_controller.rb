@@ -1,6 +1,6 @@
 class TrainersController < ApplicationController
   before_action :set_trainer, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize!, only: [:create, :edit, :update, :destroy]
   # GET /trainers
   # GET /trainers.json
   def index
@@ -71,4 +71,11 @@ class TrainersController < ApplicationController
     def trainer_params
       params.require(:trainer).permit(:image_url, :name, :description)
     end
+
+    def authorize!
+      unless can?(:crud, @trainer)
+          redirect_to root_path, alert: 'Not Authorized'
+      end
+    end
+
 end

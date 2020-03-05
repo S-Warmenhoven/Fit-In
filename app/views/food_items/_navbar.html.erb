@@ -6,12 +6,15 @@
             class: "nav-link #{'active' if params[:section] == section.name}" %></li>
   <% end %>
   <li>
-    <%= form_tag nil, method: 'get' do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-      <%= button_tag(:id =>'search-button', placeholder: "Search" ) do %>
-        <i class="fa fa-search"></i>
+  <div class="container search">
+      <%= form_tag nil, method: 'get' do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+        <%= button_tag(:id =>'search-button', placeholder: "Search" ) do %>
+          <i class="fa fa-search"></i>
+        <% end %>
       <% end %>
-    <% end %>
+  </div>
   </li>
 </ul>
 <!-- End navbar -->
+
