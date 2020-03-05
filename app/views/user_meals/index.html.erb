@@ -1,11 +1,11 @@
-<h1>All Orders</h1>
+<h1><%= icon('fas', 'shopping-cart') %> Orders</h1>
 
 <% if @user_meals.length > 0 %>
     <% @user_meals.each do |user_meal| %>
     <div>
-        <h2><%= user_meal.food_item.name %>, <%= user_meal.user.full_name %>, <%= user_friendly_range(user_meal.created_at) %></h2>
+        <p> - <%= user_meal.food_item.name %>, <%= user_meal.user.full_name %> | <%= user_friendly_range(user_meal.created_at) %></p>
     </div>
     <% end%>
 <% else %>
-    <h2>No current orders.</h2>
+    <p>No current orders.</p>
 <% end %>

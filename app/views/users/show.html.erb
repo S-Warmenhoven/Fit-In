@@ -1,5 +1,5 @@
 
-    <h1><%= @user.full_name %></h1>
+    <h1> <%= icon('fas', 'user') %> <%= @user.full_name %></h1>
     <h3>Meals left: <%= @user.meals %></h3>
     <h3>Food Account (owing): <%= number_with_precision(@user.food_account, :precision => 2) %> thb</h3>
     

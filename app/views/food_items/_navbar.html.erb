@@ -1,16 +1,24 @@
 <!-- Start navbar -->
 <ul class="nav nav-tabs mu-restaurant-menu">
-  <li><%= link_to 'ALL', food_items_path, class: "nav-link #{'active' if params[:section].nil?}" %></li>
-  <% @sections.each do |section| %>
-    <li><%= link_to section.name, food_items_path(section: section.name),
-            class: "nav-link #{'active' if params[:section] == section.name}" %></li>
-  <% end %>
   <li>
+  <div class="dropdown">
+  <button class="dropbtn">Menu Sections</button>
+    <div class="dropdown-content">
+      <a><%= link_to 'ALL', food_items_path, class: "nav-link #{'active' if params[:section].nil?}" %></a>
+      <% @sections.each do |section| %>
+        <a><%= link_to section.name, food_items_path(section: section.name),
+            class: "nav-link #{'active' if params[:section] == section.name}" %></a>
+      <% end %>
+    </div>
+  </div>
+
   <div class="container search">
       <%= form_tag nil, method: 'get' do %>
+        <div class="search">
         <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+        </div>
         <%= button_tag(:id =>'search-button', placeholder: "Search" ) do %>
-          <i class="fa fa-search"></i>
+          <i class="button" name="button"><%= icon('fas', 'search') %></i>
         <% end %>
       <% end %>
   </div>
