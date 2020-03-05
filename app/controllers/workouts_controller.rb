@@ -5,8 +5,12 @@ class WorkoutsController < ApplicationController
     
     def index 
         # @workouts = Workout.where(user_id: current_user)
-        @user_workouts = UserWorkout.all
-        @workouts = Workout.all.order(user_id: :ASC)
+        @workouts = Workout.all.order(start_time: :ASC)
+        @available_workouts = Workout.all.order(start_time: :ASC)
+        # @user_workouts = UserWorkout.all
+        # @user_workouts.each do |user_workout|
+        #     @user_workout = user_workout.where(workout: workout)
+        # end
     end
 
     def new

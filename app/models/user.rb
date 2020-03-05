@@ -13,7 +13,7 @@ class User < ApplicationRecord
     has_many :class_schedules, dependent: :nullify
     has_many :trainers, dependent: :nullify
 
-    before_save :capitalize_name
+    # before_save :capitalize_name
     before_validation :set_default_role
     before_validation :set_default_meals
     before_validation :set_default_food_account

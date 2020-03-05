@@ -3,10 +3,7 @@ class UserWorkout < ApplicationRecord
   belongs_to :workout
   belongs_to :user
 
-  #Validations
-  #validates :start_time, :end_time, presence: true  
-  # validate :end_time_after_start_time
-  #validate :available
+  validate :available
 
   # The following will ensure that the workout_id / user_id
   # combination is unique.
@@ -16,7 +13,7 @@ class UserWorkout < ApplicationRecord
     :workout_id, 
     uniqueness: {
       scope: :user_id,
-      message: "has already been booked"      
+      message: "Has already been booked"      
     }
   )
 
@@ -51,9 +48,6 @@ class UserWorkout < ApplicationRecord
 
   def available
     conflicts = UserWorkout.where(workout_id: workout_id)
-      .where("start_time < ? AND end_time > ?", start_time, start_time)
-      .or(UserWorkout.where("start_time < ? AND end_time > ?", end_time, end_time))
-      .or(UserWorkout.where("start_time > ? AND end_time < ?", start_time, end_time))
 
     if conflicts.exists?
       errors.add(:start_time, "The time you have selected is unavailable. Please select another time slot.")
