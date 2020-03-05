@@ -2,8 +2,8 @@
     <% @users.each do |user| %>
         <div>
             <h2><%= user.full_name %></h2>
-            <%= link_to 'Edit', edit_user_path(user) %>
-            <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <button><%= link_to 'Edit', edit_user_path(user) %></button>
+            <button><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
         </div>
     <% end %>
 <% end %>

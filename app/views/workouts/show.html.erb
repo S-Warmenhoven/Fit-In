@@ -1,10 +1,14 @@
 <h1>Workout</h1>
-<p><%= user_friendly_range(@workout.start_time) %> to <%= user_friendly_range(@workout.end_time) %></p>
-
-<%= link_to("Delete", workout_path(@workout), method: :delete, data:{confirm:'Are you sure?' }) %>
-<br />
-<% @user = current_user%>
-<%= link_to 'Edit', edit_workout_path(@workout.id)%>
-
-<td><%= link_to 'Book', new_workout_user_workout_path(@workout, @user_workout) %></td>
+<p><%= user_friendly_range(@workout.start_time) %> to <%= readable_time(@workout.end_time) %> - <%= @workout.user.first_name %></p>
+<% if can? :crud, @workout %>
+    <hr>
+    <%= link_to("Delete", workout_path(@workout), method: :delete, data:{confirm:'Are you sure?' }) %>
+    <br />
+    <%= link_to 'Edit', edit_workout_path(@workout.id)%>
+    <hr>
+<% end %>
+<hr>
 <%= link_to 'Back', workouts_path %>
+<hr>
+<% @user = current_user%>
+<button><%= link_to 'Book', new_workout_user_workout_path(@workout, @user_workout) %></td></button>

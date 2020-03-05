@@ -1,5 +1,5 @@
 class SocialEventsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_social_event, only: [:show, :edit, :update, :destroy]
 
   # GET /social_events

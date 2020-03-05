@@ -4,7 +4,6 @@
     <title>Fit-In</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
     <%= favicon_link_tag asset_path('logo.png') %>
@@ -13,86 +12,62 @@
   </head>
 
   <body>
-   
+  
+    <div class="container">
 
-<nav role="navigation" class="hamburger-menu">
-  <div id="menuToggle">
-
-    <input type="checkbox" />
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-    <ul id="menu">
-      <a href="#"><li>Home</li></a>
-      <a href="#"><li>About</li></a>
-      <a href="#"><li>Info</li></a>
-      <a href="#"><li>Contact</li></a>
-      <a href="https://erikterwan.com/" target="_blank"><li>Show me more</li></a>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-
-
-<h1>Fixing stuff above</h1>
-
-
-
-
- <div class="container">
-
-
+      <div class="menu-wrap">
+        <input type="checkbox" class="toggler" />
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %></li>
+                <li><%= icon('fas', 'mobile-alt') %><%= link_to 'Contact Us', contact_us_path %></li>
+                <li><%= icon('fas', 'users') %><%= link_to 'Trainers', trainers_path %><li>
+                <li><%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %></li>
+                <% if user_signed_in? && current_user.is_admin? %>
+                  <li><%= icon('far', 'calendar-plus') %><%= link_to 'New Class', new_class_schedule_path %></li>
+                  <li><%= icon('fas', 'utensils') %><%= link_to 'New Food Item', new_food_item_path %></li>
+                  <li><%= icon('fas', 'receipt') %><%= link_to 'All Orders', user_meals_path %></li>
+                  <li><%= icon('fas', 'user-plus') %><%= link_to "New User", new_user_path %></li>
+                <% end %>
+                <% if user_signed_in? && !current_user.is_admin? %>
+                  <li><%= icon('fas', 'user') %><%= link_to 'My Profile', "/users/user.id" %></li>
+                  <li><%= icon('fas', 'shopping-cart') %><%= link_to 'My Orders', user_meals_path %></li>
+                <% end %>
+                <% if user_signed_in?%>
+                  <li><%= icon('fas', 'sign-out-alt') %><%= link_to "Sign Out", session_path, method: :delete,
+                      data: {confirm: "Are you sure you want to sign out?"} %>
+                  </li>
+                <% else %>
+                  <li><%= icon('fas', 'sign-in-alt') %><%= link_to "Sign In", new_session_path %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
       <nav>
-        <div>
+        <div class="logo">
           <h1> <%= link_to icon('fas', 'dumbbell'), root_path, { class: "navbar-link"} %> Fit-In </h1>
+          <p>Fit-In more time for fun. Book. Order. Go! <%=icon('fas', 'running')%></p>
         </div>
         <% if user_signed_in? %>
           Hello <%= current_user.full_name %>
-          <%= icon('fas', 'sign-out-alt') %><%= link_to "Sign Out", session_path, method: :delete,
-          data: {confirm: "Are you sure you want to sign out?"} %>
-          |
-          <%= icon('fas', 'user') %><%= link_to 'My Profile', "/users/user.id" %>
-          |
-          <%= icon('fas', 'shopping-cart') %><%= link_to 'My Orders', user_meals_path %>
-          <% if current_user.is_admin? %>
-            |
-            <%= icon('far', 'calendar-plus') %><%= link_to 'New Class', new_class_schedule_path %>
-            |
-            <%= icon('fas', 'utensils') %><%= link_to 'New Food Item', new_food_item_path %>
-            |
-            <%= icon('fas', 'receipt') %><%= link_to 'All Orders', user_meals_path %>
-            |
-            <%= icon('fas', 'user-plus') %><%= link_to "Sign Up", new_user_path %>
-          <% end %>
-        <% else %>
-          <%= icon('fas', 'sign-in-alt') %><%= link_to "Sign In", new_session_path %>
-        <% end %>
-        <hr>
-        <%# <a href="/">Home</a> %>
-        <%= link_to 'Classes', root_path %>
-        |
-        <%= icon('fas', 'exclamation-triangle') %><%= link_to 'Prepare', prepare_path %>
-        |
-        <%= icon('fab', 'whatsapp-square') %><%= link_to 'Contact Us', contact_us_path %>
-        |
-        <%= link_to 'Our Trainers', trainers_path %>
-        <% if user_signed_in? %>
-          |
-          <%= icon('fas', 'hiking') %><%= link_to 'Social Events', social_events_path %>
-          |
+          <hr>
           <%= icon('fas', 'dumbbell') %><%= link_to 'Workouts Booked', user_workouts_path %>
           |
-          <%= icon('fas', 'calendar-alt') %><%= link_to 'Available Workouts', workouts_path %>
-          |
           <%= icon('fas', 'utensils') %><%= link_to 'Food', food_items_path %>
+          <br>
+          <%= icon('fas', 'calendar-alt') %><%= link_to 'Available Workouts', workouts_path %>
           <% if current_user.role == "trainer" %>
             |
-            <%= icon('far', 'calendar-plus') %><%= link_to 'New Training session', new_workout_path %>
+            <%= icon('far', 'calendar-plus') %><%= link_to 'New Session', new_workout_path %>
+          <% end %>
+          <% if current_user.is_admin? %>
+            |
+            <%= icon('fas', 'users') %><%= link_to 'Users', users_path %>
           <% end %>
         <% end %>
       </nav>
