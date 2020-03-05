@@ -6,8 +6,9 @@
     <% end %>
       <%= select_tag :sort, options_for_select([['Name', 'name'], ["Price", 'price']]) %>
       <%= select_tag :dir, options_for_select([['Asc', 'asc'], ["Desc", 'desc']]) %>
-
+      
       <%= submit_tag "Sort", :name => nil %>
+      
   <% end %>
 </div>
 <!-- End control row -->

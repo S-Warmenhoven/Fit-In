@@ -59,6 +59,7 @@ input, select {border: 1px solid black; background: none; font-size: 2.052em; wi
 
 button {font-size: 1em; border: 1px solid black; border-radius: .3em; background: black; color: white; padding: 1em 2em; margin-bottom: 1em;}
 
+
 button:active, button:hover {background: white; color: black;}
 
 .nav-link { font-size: 2em;}
@@ -153,7 +154,7 @@ body {
   padding: 0 0;
 }
 
-input, select #search {
+input #search {
   padding: 0 0; font-size: 1.052em; width: 100%; margin-bottom: 0.5em;
 }
 
@@ -378,3 +379,7 @@ div .search {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+.meals {background-color: rgb(182, 69, 182);}
+
+.food-account {background-color: rgb(241, 77, 77)}

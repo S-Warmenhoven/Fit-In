@@ -1,11 +1,11 @@
 
     <h1> <%= icon('fas', 'user') %> <%= @user.full_name %></h1>
-    <h3>Meals left: <%= @user.meals %></h3>
-    <h3>Food Account (owing): <%= number_with_precision(@user.food_account, :precision => 2) %> thb</h3>
+    <h3 class="meals">Meals left: <%= @user.meals %></h3>
+    <h3 class="food-account">Food Account: <%= number_with_precision(@user.food_account, :precision => 2) %> thb (owing)</h3>
     
 
     <% if @guest_workouts.length > 0 %>
-        <h3 class="booked">My Booked Workouts</h3>
+        <h3 class="booked">Booked Workouts</h3>
         <% @guest_workouts.each do |user_workout| %>
             <p><%= user_friendly_range(user_workout.workout.start_time) %> to <%= readable_time(user_workout.workout.end_time) %> with <%= user_workout.workout.user.first_name %></p>
         <hr>

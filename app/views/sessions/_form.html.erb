@@ -1,0 +1,15 @@
+<%= form_with url: session_path, local: true do |f| %>
+    <div>
+        <%= f.label :email %>
+        <%= f.email_field :email%>
+    </div>
+     <div>
+        <%= f.label :password %>
+        <%= f.password_field :password%>
+    </div>
+    <%= button_tag(:id =>'f.submit', placeholder: "Sign In" ) do %>
+          <i class="button" name="button">Sign In</i>
+    <% end %>
+    
+    
+<% end %>
