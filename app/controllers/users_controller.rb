@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
     before_action :find_user, only: [:edit,:update, :destroy]
     before_action :authorize!, only: [:index, :create, :edit, :update, :destroy]
 

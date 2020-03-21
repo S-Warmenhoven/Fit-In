@@ -7,7 +7,7 @@ class ClassSchedulesController < ApplicationController
         @class_schedule = ClassSchedule.new
     end
 
-    def create
+    def create   
         if can? :crud
         @class_schedule = ClassSchedule.new class_schedule_params
         @class_schedule.user = current_user
@@ -17,14 +17,12 @@ class ClassSchedulesController < ApplicationController
         else
             render :new
         end
-
     end
 
     def edit   
     end
 
-    def update
-        
+    def update    
         if @class_schedule.update class_schedule_params
             flash[:notice] = 'Updated Successfully'
             redirect_to root_path

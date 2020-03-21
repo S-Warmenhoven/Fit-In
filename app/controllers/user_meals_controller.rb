@@ -1,5 +1,4 @@
 class UserMealsController < ApplicationController
-
     before_action :authenticate_user!
     before_action :find_food_item, only: [:create]
 
@@ -32,11 +31,7 @@ class UserMealsController < ApplicationController
     end
 
 
-    def new
-        # binding.pry
-        # @user_meal = UserMeal.new
-        # @food_item = FoodItem.find params[:food_item_id]
-         
+    def new 
         create
     end
 
@@ -48,12 +43,10 @@ class UserMealsController < ApplicationController
         if @user.meals == 0 && @user_meal.meal_number != nil
             flash[:danger] = "You have no meals left. Please order by price."
             redirect_to food_items_path
-
         else
             @user_meal.food_item_id = @food_item.id
         
             if @user_meal.save
-                # binding.pry
                 if @user_meal.meal_number == nil
                     @user.food_account = @user.food_account + @user_meal.price
                     @user.save
@@ -84,6 +77,5 @@ class UserMealsController < ApplicationController
     def find_food_item 
         @food_item = FoodItem.find params[:food_item_id]
     end
-
 
 end

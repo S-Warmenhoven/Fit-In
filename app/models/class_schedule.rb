@@ -1,4 +1,4 @@
 class ClassSchedule < ApplicationRecord
-    # Assiociations
+    #Assiociations
     belongs_to :user   
 end

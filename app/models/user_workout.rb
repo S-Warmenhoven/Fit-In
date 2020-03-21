@@ -1,14 +1,13 @@
 class UserWorkout < ApplicationRecord
-  #Association
+  #Associations
   belongs_to :workout
   belongs_to :user
 
+  #Validations
   validate :available
 
   # The following will ensure that the workout_id / user_id
-  # combination is unique.
-  # Said in plain english, this is needed to make sure that 
-  # a user can only like a workout once. 
+  # combination is unique. 
   validates(
     :workout_id, 
     uniqueness: {
@@ -18,6 +17,12 @@ class UserWorkout < ApplicationRecord
   )
 
   #AASM Gem functions for state of reserving workout
+  #Thus far reserving function is implemented; however,
+  #it would depend on the organization if they would like to
+  #implement the approve/reject functions
+  #The App is currently only allowing trainers (and admin) 
+  #to delete bookings through deleteing workouts
+  
   include AASM
 
   aasm do

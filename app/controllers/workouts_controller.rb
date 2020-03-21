@@ -3,19 +3,16 @@ class WorkoutsController < ApplicationController
     before_action :find_workout, only: [:show, :edit,:update, :destroy]
     before_action :authorize!, only: [:create, :edit, :update, :destroy]
     
-    def index
-        # if params[:search]
-        #     @search_term = params[:search]
-        #     @workouts = Workout
-        #         .search_by(@search_term)
-        #         .order(start_time: :ASC)
-        #     @available_workouts = Workout
-        #         .search_by(@search_term)
-        #         .order(start_time: :ASC)
-        # else
-            @workouts = Workout.all.order(start_time: :ASC)
+    def index 
+        @trainers = User.all.where(role: "trainer")
+        
+        if params[:search]
+            @trainer = User.find_by_first_name params[:search]
+            @available_workouts = Workout.where(user: @trainer)
+        else
             @available_workouts = Workout.all.order(start_time: :ASC)
-        # end
+        end
+
     end
 
     def new
@@ -25,12 +22,14 @@ class WorkoutsController < ApplicationController
     def create
         @workout = Workout.new workout_params
         @workout.user = current_user
+        
         if @workout.save # perform validation and if succesful it will save in db
             flash[:notice] = 'Workout Created Successfully'
             redirect_to workout_path(@workout.id)
         else
             render :new
         end
+
     end
 
     def edit    
@@ -44,6 +43,7 @@ class WorkoutsController < ApplicationController
         else
             render :edit
         end
+        
     end
 
 

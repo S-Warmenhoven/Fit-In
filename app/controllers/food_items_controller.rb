@@ -4,7 +4,6 @@ class FoodItemsController < ApplicationController
     before_action :authorize!, only: [:create, :edit, :update, :destroy]
     
     def index
-
         @sections = Section.all
         
         if params[:section]

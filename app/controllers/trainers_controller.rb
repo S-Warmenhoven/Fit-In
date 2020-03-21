@@ -1,6 +1,7 @@
 class TrainersController < ApplicationController
   before_action :set_trainer, only: [:show, :edit, :update, :destroy]
   before_action :authorize!, only: [:create, :edit, :update, :destroy]
+  
   # GET /trainers
   # GET /trainers.json
   def index

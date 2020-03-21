@@ -1,15 +1,18 @@
-<h3>Search by Trainer:</h3>
-<div class="container search">
-      <%= form_tag nil, method: 'get' do %>
-        <div class="search">
-          <%= text_field_tag :search, params[:search], placeholder: "Search" %>
-        </div>
-        <%= button_tag(:id =>'search-button', placeholder: "Search" ) do %>
-          <i class="fa fa-search"></i>
-        <% end %>
-      <% end %>
-</div>
 
+<ul>
+  <li>
+  <div class="dropdown">
+  <button class="dropbtn">Sort by Trainer</button>
+    <div class="dropdown-content">
+      <a><%= link_to 'ALL', workouts_path, class: "nav-link #{'active' if params[:search].nil?}" %></a>
+      <% @trainers.each do |trainer| %>
+        <a><%= link_to trainer.first_name, workouts_path(search: trainer.first_name),
+            class: "nav-link #{'active' if params[:search] == trainer.first_name}" %></a>
+      <% end %>
+    </div>
+  </div>
+  </li>
+  </ul>
 
 <% @available_workouts.each do |workout| %>
     <% if workout.user_workouts.empty? %> 

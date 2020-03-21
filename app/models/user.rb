@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    #Association
+    #Associations
 
     #As trainee
     has_many :user_workouts, dependent: :destroy

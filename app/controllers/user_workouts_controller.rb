@@ -1,9 +1,7 @@
-class UserWorkoutsController < ApplicationController
-    
+class UserWorkoutsController < ApplicationController 
     before_action :authenticate_user!
     before_action :find_workout, only: [:create]
     
-
     def index
         @user_workouts = current_user.user_workouts
     end
@@ -22,6 +20,7 @@ class UserWorkoutsController < ApplicationController
         @user = current_user
         @user_workouts = current_user.user_workouts
         booked_workout = UserWorkout.where(workout_id: @workout)
+        
         if booked_workout.exists?
             flash[:danger] = "Workout session has already been booked"
             render :index

@@ -1,24 +1,15 @@
 class Workout < ApplicationRecord
-  # Assiociations
+  #Assiociations
   has_many :users
   has_many :users, through: :user_workouts
   has_many :user_workouts, dependent: :destroy
   belongs_to :user
 
-  # scope :search, lambda { |query|
-  #   where("user.first_name ILIKE '%#{query}%'")
-  # }
-
-  # Custom methods
-  def self.search_by(search_term)
-    where("LOWER(user.first_name) LIKE :search_term", search_term: "%#{search_term.downcase}%")
-  end
-
   #Validations
   validates :start_time, :end_time, presence: true  
   validate :end_time_after_start_time
   validate :available
-
+  
   validates(
     :start_time, 
     uniqueness: {
@@ -26,6 +17,11 @@ class Workout < ApplicationRecord
       message: "has already been used"      
     }
   )
+  
+  # Custom methods
+  scope :search, lambda { |query|
+    where("user ILIKE '%#{query}%'")
+    }
 
   private
 
